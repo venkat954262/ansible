@@ -1,0 +1,21 @@
+- name: download plugin
+  get_url: url={{ plugin_url }} dest=/opt/
+
+- name: extract the plugin
+  unarchive:
+   src: /opt/nagios-plugins-release-2.2.1.tar.gz
+   dest: /opt/
+
+- name: cd to plugin directory and run configure
+  shell: "cd /opt/nagios-plugins-release-2.2.1 && ./tools/setup && ./configure"
+
+- name: make
+  shell: "make chdir=/opt/nagios-plugins-release-2.2.1"
+
+- name: make install
+  shell: "make install chdir=/opt/nagios-plugins-release-2.2.1"
+  #notify:
+  # - nagios start
+
+- name: start nagios
+  service: name=nagios state=started

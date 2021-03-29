@@ -1,0 +1,7 @@
+---
+# handlers file for test
+- name: start nagios
+  service: name=nagios state=started
+
+- name: restart apache2
+  service: name=apache2 state=restarted

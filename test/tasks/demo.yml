@@ -1,0 +1,54 @@
+---
+ - hosts: localhost
+   tasks:
+           
+           # - name: make all
+           #      shell: "make all chdir=/opt/nagioscore-nagios-4.4.2"
+    
+           #    - name: create nagios user
+           #      shell: "make install-groups-users chdir=/opt/nagioscore-nagios-4.4.2"
+
+           #    - name: add www-data user to nagios grp
+           #      shell: "usermod -a -G nagios www-data"  
+
+           #    - name: make install
+           #      command: "make install chdir=/opt/nagioscore-nagios-4.4.2"
+
+           #    - name: make install-init
+           #      command: "make install-init chdir=/opt/nagioscore-nagios-4.4.2"
+
+           #    - name: make install-commandmode
+           #      command: "make install-commandmode chdir=/opt/nagioscore-nagios-4.4.2"
+
+           #    - name: make install-config
+           #      command: "make install-config chdir=/opt/nagioscore-nagios-4.4.2"
+
+           #    - name: make install-webconf
+           #      command: "make install-webconf chdir=/opt/nagioscore-nagios-4.4.2"
+      
+           #    - name: apache rewrite cgi modules
+           #      shell: "a2enmod rewrite && a2enmod cgi"
+           #    - name: make install-daemoninit
+           #      shell: "make install-daemoninit chdir=/opt/nagioscore-nagios-4.4.2"
+
+           #    - name: install python passlib library
+           #      apt: name=python-passlib state=present
+           #    - name: create an admin user nagiosadmin usin htpasswd
+           #      htpasswd:
+           #       path: /usr/local/nagios/etc/htpasswd.users
+           #       name: nagiosadmin
+           #       password: 'nagiosadmin'
+           #       group: www-data
+           #       mode: 0640  i
+           #
+           #
+           #
+   - name: restart apache2
+     service: name=apache2 state=restarted
+   - name: configuring firewall
+     ufw:
+      rule: allow
+      name: Apache  
+
+
+           
