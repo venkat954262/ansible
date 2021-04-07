@@ -1,0 +1,23 @@
+---
+ - hosts: localhost
+   gather_facts: no
+   vars:
+    username: venkat954262
+    password: venkat99mtm
+    repo_name: repo1
+    HostName: "192.168.70.17:8080"
+    TokenName: "1234"
+    JobName: "ansible-trigger"
+
+   tasks:
+     - name: Ansible Git Module with Username Password.
+       git:
+        repo: 'https://{{ username | urlencode }}:{{ password | urlencode }}@github.com/{{ username }}/{{ repo_name }}.git'
+        version: "{{ branch }}" 
+        force: yes 
+        dest: /var/lib/workspace/jenkins/ansible-trigger/
+     
+     - name: Queue build
+       shell: "curl -u apalya:1159b5bd2d40805d7191ab19f1e94ab010 http://{{ HostName }}/job/{{ JobName }}/build?token={{ TokenName }}" 
+
+#ansible-playbook git.yml --extra-vars "branch=branch1"
